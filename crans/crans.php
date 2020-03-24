@@ -1,8 +1,8 @@
 <?php 
 
-include ('classCrans.php');
-include ('classCranLoad.php');
-include ('classCheckList.php');
+require_once 'classCran.php';
+require_once 'classCranLoad.php';
+require_once 'classCheckList.php';
 
 
 $crans = [

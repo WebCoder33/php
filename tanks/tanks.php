@@ -1,7 +1,7 @@
 <?php 
 
-include ('classTank.php');
-include ('classCheckList.php');
+require_once 'classTank.php';
+require_once 'classCheckList.php';
 
 
 $tanks = [
