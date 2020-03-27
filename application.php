@@ -1,5 +1,7 @@
 <?php
 
+require_once 'user.php';
+
 class Application {
 
     private $users;
@@ -12,32 +14,42 @@ class Application {
 
     private function requestUsers() {
 
+        $user1 = new User(
+            [
+            'person' => ['Макаров', 'Петр', 'Петрович', 35],
+            'address' => '(г.Урюпинск, Гвардейская ул., д. 4)',
+            'contract' => '{250 - Дача, 257 - Будущее}' 
+            ]
+        );
+        $user2 = new User(
+            [
+            'person' => ['Михайлов', 'Изяслав', 'Бананович', 43],
+            'address' => '(г.Минск, Гвардейская ул., д. 4)',
+            'contract' => '{250 - Город, 257 - Будущее}' 
+            ]
+        );
+        $user3 = new User(
+            [
+            'person' => ['Скворцов', 'Майкл', 'Дитрихович', 23],
+            'address' => '(г.Волгоград, Гвардейская ул., д. 4)',
+            'contract' => '{250 - Село, 257 - Будущее}' 
+            ]
+        );
+
         return $users = [ 
-            ['Сидоров', 'Валентин', 'Иванович', 23],
-            ['Макаров', 'Петр', 'Петрович', 35],
-            ['Михайлов', 'Изяслав', 'Бананович', 43],
+            $user1->getUserData(),
+            $user2->getUserData(),
+            $user3->getUserData()
         ];
-
-    }
-
-    protected function getSurnameAndInitials($user) {
-
-            $lastName = $user[0];
-            $firstLetterName = mb_substr($user[1],0,1,'utf-8');
-            $firstLetterMiddleName = mb_substr($user[2],0,1,'utf-8');
-
-            return $lastName.' '.$firstLetterName.'. '.$firstLetterMiddleName.'.';
 
     }
 
     protected function generateUsersDataList($users) {
 
         $usersDataList = [];
-        $dummy = '(г.Урюпинск, Гвардейская ул., д. 4) {250 - Дача, 257 - Будущее}';
 
-        for ($i = 0; $i < count($users); $i++) {
-        
-            $usersDataList[$i] = $this->getSurnameAndInitials($users[$i]).' '.$dummy;
+        foreach ($users as $array) {
+            $usersDataList[] = $array['person']->getSurnameAndInitials().' '.$array['address'].' '.$array['contract'];
 
         }
 
