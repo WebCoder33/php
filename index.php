@@ -4,7 +4,8 @@ require_once 'application.php';
 
 $application = new Application();
 
-echo $application->getAllUsers();
-
+foreach ($application->getUsersDataList() as $line) {
+    echo $line."<br>";
+}
 
 ?>
