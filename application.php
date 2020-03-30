@@ -44,6 +44,12 @@ class Application {
 
     }
 
+    public function getUsersDataList() {
+
+        return $this->generateUsersDataList($this->users);
+
+    }
+
     protected function generateUsersDataList($users) {
 
         $usersDataList = [];
@@ -52,9 +58,9 @@ class Application {
 
             $personInitials = $value->userData['person']->getString_SurnameAndInitials();
             $addressString = $value->userData['address']->getString_CityStreetHome();
-            $contractString = $this->getContractsString($value->userData['contracts']);
+            $contractsString = $this->getContractsString($value->userData['contracts']);
 
-            $usersDataList[] = $personInitials.' '.$addressString.' '.$contractString;
+            $usersDataList[] = $personInitials.' '.$addressString.' '.$contractsString;
 
         }
 
@@ -71,12 +77,6 @@ class Application {
         }
 
         return substr($contractString,0,-2).'}';
-
-    }
-
-    public function getUsersDataList() {
-
-        return $this->generateUsersDataList($this->users);
 
     }
 
