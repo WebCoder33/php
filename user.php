@@ -1,23 +1,21 @@
 <?php
 
-require_once 'person.php';
-require_once 'address.php';
-
 class User {
 
     protected $userData = [
         'person' => '', 
         'address' => '',
-        'contract' => ''
+        'contracts' => ''
     ];
 
     public function __construct($array) {
 
-        $this->userData['person'] = new Person($array['person']);
-        $this->userData['address'] = new Address($array['address']);
-        $this->userData['contract'] = $array['contract'];
+        $this->userData['person'] = $array['person'];
+        $this->userData['address'] = $array['address'];
+        $this->userData['contracts'] = $array['contracts'];
 
     }
+    
 
     public function getUserData() {
 

@@ -3,9 +3,9 @@
 class Address {
 
     protected $address = [
-        'city' => '',
-        'streetFormat' => '',
-        'street' => '',
+        'city' => 'Null',
+        'streetFormat' => 'Null',
+        'street' => 'Null',
         'home' => 0,
         'building' => 0,
         'apartment' => 0

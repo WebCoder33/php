@@ -3,9 +3,9 @@
 class Person {
 
     protected $person = [
-                'lastName' => '',
-                'name' => '',
-                'middleName' => '',
+                'lastName' => 'Null',
+                'name' => 'Null',
+                'middleName' => 'Null',
                 'age' => 0
             ];
 
