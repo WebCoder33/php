@@ -2,7 +2,7 @@
 
 class Person {
 
-    private $person = [
+    protected $person = [
                 'lastName' => '',
                 'name' => '',
                 'middleName' => '',
@@ -11,14 +11,25 @@ class Person {
 
     public function __construct($array) {
 
-        $this->person['lastName'] = $array[0];
-        $this->person['name'] = $array[1];
-        $this->person['middleName'] = $array[2];
-        $this->person['age'] = $array[3];
+        $this->getDataFromArray($array);
+
+    }
+
+    protected function getDataFromArray($dataArray) {
+
+        $counter = 0;
+
+        foreach ( $this->person as $key => $value ) {
+            if ($counter >= count($dataArray)) {
+                break;
+            }
+            $this->person[$key] = $dataArray[$counter];
+            $counter++;
+        }
 
     }
     
-    public function getSurnameAndInitials() {
+    public function getString_SurnameAndInitials() {
 
         $lastName = $this->person['lastName'];
         $firstLetterName = mb_substr($this->person['name'],0,1,'utf-8');

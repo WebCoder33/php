@@ -1,10 +1,11 @@
 <?php
 
 require_once 'person.php';
+require_once 'address.php';
 
 class User {
 
-    private $userData = [
+    protected $userData = [
         'person' => '', 
         'address' => '',
         'contract' => ''
@@ -13,7 +14,7 @@ class User {
     public function __construct($array) {
 
         $this->userData['person'] = new Person($array['person']);
-        $this->userData['address'] = $array['address'];
+        $this->userData['address'] = new Address($array['address']);
         $this->userData['contract'] = $array['contract'];
 
     }
