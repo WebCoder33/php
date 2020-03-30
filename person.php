@@ -3,9 +3,9 @@
 class Person {
 
     protected $person = [
-                'lastName' => 'Null',
-                'name' => 'Null',
-                'middleName' => 'Null',
+                'lastName' => '-',
+                'name' => '-',
+                'middleName' => '-',
                 'age' => 0
             ];
 
@@ -22,14 +22,27 @@ class Person {
         foreach ( $this->person as $key => $value ) {
             if ($counter >= count($dataArray)) {
                 break;
+            }; 
+            if (!$this->checkEqualityTypes($this->person[$key], $dataArray[$counter])) {
+                $counter++;
+                continue;
             }
             $this->person[$key] = $dataArray[$counter];
             $counter++;
         }
 
     }
+
+    protected function checkEqualityTypes($firstValue, $secondValue) { 
+
+        if (gettype($firstValue) == gettype($secondValue)) {
+            return true;
+        };
+        
+    }
     
     public function getString_SurnameAndInitials() {
+
 
         $lastName = $this->person['lastName'];
         $firstLetterName = mb_substr($this->person['name'],0,1,'utf-8');

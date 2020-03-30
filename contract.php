@@ -22,10 +22,22 @@ class Contract {
             if ($counter >= count($dataArray)) {
                 break;
             }
+            if (!$this->checkEqualityTypes($this->contract[$key], $dataArray[$counter])) {
+                $counter++;
+                continue;
+            }
             $this->contract[$key] = $dataArray[$counter];
             $counter++;
         }
 
+    }
+    
+    protected function checkEqualityTypes($firstValue, $secondValue) { 
+
+        if (gettype($firstValue) == gettype($secondValue)) {
+            return true;
+        };
+        
     }
 
     public function getString_contractNumberTariff() {

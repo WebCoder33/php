@@ -4,6 +4,7 @@ require_once 'user.php';
 require_once 'person.php';
 require_once 'address.php';
 require_once 'contract.php';
+require_once 'peopleGenerator.php';
 
 class Application {
 
@@ -17,24 +18,33 @@ class Application {
 
     private function requestUsers() {
 
+        $peopleGenerator = new peopleGenerator();
+
         return $users = [ 
             $user1 = new User(
                 [
-                'person' => new Person(['Макаров', 'Петр', 'Петрович', 35]),
+                'person' => $peopleGenerator->generatePerson(),
                 'address' => new Address(['Урюпинск', 'ул','Гвардейская', 6]),
                 'contracts' => [new Contract(['250/750', 'Мафия', 300]), new Contract(['250/300', 'Сычужный', 250])]
                 ]
                 ),
             $user2 = new User(
                 [
-                'person' => new Person(['Михайлов', 'Изяслав', 'Бананович', 43]),
+                'person' => $peopleGenerator->generatePerson(),
                 'address' => new Address(['Минск', 'ул','Гвардейская', 9]),
                 'contracts' => [ new Contract(['250/56', 'Город', 300]), new Contract([257, 'Будущее', 300]) ] 
                 ]
                 ),
             $user3 = new User(
                 [
-                'person' => new Person(['Скворцов', 'Майкл', 'Дитрихович', 23]),
+                'person' => $peopleGenerator->generatePerson(),
+                'address' => new Address(['Волгоград', 'пр', 'Ленина', 81]),
+                'contracts' => [new Contract(['250/890', 'Село', 300])] 
+                ]
+                ),
+            $user4 = new User(
+                [
+                'person' => $peopleGenerator->generatePerson(),
                 'address' => new Address(['Волгоград', 'пр', 'Ленина', 81]),
                 'contracts' => [new Contract(['250/890', 'Село', 300])] 
                 ]
