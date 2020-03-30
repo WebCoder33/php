@@ -6,6 +6,7 @@ require_once 'address.php';
 require_once 'contract.php';
 require_once 'peopleGenerator.php';
 require_once 'addressGenerator.php';
+require_once 'contractGenerator.php';
 
 
 class Application {
@@ -22,6 +23,7 @@ class Application {
 
         $peopleGenerator = new peopleGenerator();
         $addressGenerator = new addressGenerator();
+        $contractGenerator = new contractGenerator();
         
 
         return $users = [ 
@@ -29,28 +31,28 @@ class Application {
                 [
                 'person' => $peopleGenerator->generatePerson(),
                 'address' => $addressGenerator->generateAddress(),
-                'contracts' => [new Contract(['250/750', 'Мафия', 300]), new Contract(['250/300', 'Сычужный', 250])]
+                'contracts' => [$contractGenerator->generateContract(), $contractGenerator->generateContract()]
                 ]
                 ),
             $user2 = new User(
                 [
                 'person' => $peopleGenerator->generatePerson(),
                 'address' => $addressGenerator->generateAddress(),
-                'contracts' => [ new Contract(['250/56', 'Город', 300]), new Contract([257, 'Будущее', 300]) ] 
+                'contracts' => [ $contractGenerator->generateContract(), $contractGenerator->generateContract() ] 
                 ]
                 ),
             $user3 = new User(
                 [
                 'person' => $peopleGenerator->generatePerson(),
                 'address' => $addressGenerator->generateAddress(),
-                'contracts' => [new Contract(['250/890', 'Село', 300])] 
+                'contracts' => [$contractGenerator->generateContract()] 
                 ]
                 ),
             $user4 = new User(
                 [
                 'person' => $peopleGenerator->generatePerson(),
                 'address' => $addressGenerator->generateAddress(),
-                'contracts' => [new Contract(['250/890', 'Село', 300])] 
+                'contracts' => [$contractGenerator->generateContract(),$contractGenerator->generateContract(),$contractGenerator->generateContract(),$contractGenerator->generateContract()] 
                 ]
                 )
 
