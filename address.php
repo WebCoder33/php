@@ -33,12 +33,12 @@ class Address {
 
     public function getString_CityStreetHome() {
 
-        $City = $this->address['city'];
-        $StreetFormat = $this->address['streetFormat'];
-        $Street = $this->address['street'];
-        $Home = $this->address['home'];
+        $city = $this->address['city'];
+        $streetFormat = $this->address['streetFormat'];
+        $street = $this->address['street'];
+        $home = $this->address['home'];
 
-        return '(г.'.$City.', '.$StreetFormat.'.'.$Street.', д.'.$Home.')';
+        return '(г.'.$city.', '.$streetFormat.'.'.$street.', д.'.$home.')';
 
     }
 

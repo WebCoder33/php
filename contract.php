@@ -30,10 +30,10 @@ class Contract {
 
     public function getString_contractNumberTariff() {
 
-        $ContractNumber = $this->contract['number'];
-        $Tariff = $this->contract['tariff'];
+        $contractNumber = $this->contract['number'];
+        $tariff = $this->contract['tariff'];
 
-        return $ContractNumber.' - '.$Tariff;
+        return $contractNumber.' - '.$tariff;
 
     }
 

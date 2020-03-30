@@ -2,7 +2,7 @@
 
 class User {
 
-    protected $userData = [
+    public $userData = [
         'person' => '', 
         'address' => '',
         'contracts' => ''
@@ -16,12 +16,6 @@ class User {
 
     }
     
-
-    public function getUserData() {
-
-        return $this->userData;
-
-    }
 
 }
 

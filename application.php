@@ -17,32 +17,29 @@ class Application {
 
     private function requestUsers() {
 
-        $user1 = new User(
-            [
-            'person' => new Person(['Макаров', 'Петр', 'Петрович', 35]),
-            'address' => new Address(['Урюпинск', 'ул','Гвардейская', 6]),
-            'contracts' => [new Contract(['250/750', 'Мафия', 300]), new Contract(['250/300', 'Сычужный', 250])]
-            ]
-        ); 
-        $user2 = new User(
-            [
-            'person' => new Person(['Михайлов', 'Изяслав', 'Бананович', 43]),
-            'address' => new Address(['Минск', 'ул','Гвардейская', 9]),
-            'contracts' => [ new Contract(['250/56', 'Город', 300]), new Contract([257, 'Будущее', 300]) ] 
-            ]
-        );
-        $user3 = new User(
-            [
-            'person' => new Person(['Скворцов', 'Майкл', 'Дитрихович', 23]),
-            'address' => new Address(['Волгоград', 'пр', 'Ленина', 81]),
-            'contracts' => [new Contract(['250/890', 'Село', 300])] 
-            ]
-        );
-
         return $users = [ 
-            $user1->getUserData(),
-            $user2->getUserData(),
-            $user3->getUserData()
+            $user1 = new User(
+                [
+                'person' => new Person(['Макаров', 'Петр', 'Петрович', 35]),
+                'address' => new Address(['Урюпинск', 'ул','Гвардейская', 6]),
+                'contracts' => [new Contract(['250/750', 'Мафия', 300]), new Contract(['250/300', 'Сычужный', 250])]
+                ]
+                ),
+            $user2 = new User(
+                [
+                'person' => new Person(['Михайлов', 'Изяслав', 'Бананович', 43]),
+                'address' => new Address(['Минск', 'ул','Гвардейская', 9]),
+                'contracts' => [ new Contract(['250/56', 'Город', 300]), new Contract([257, 'Будущее', 300]) ] 
+                ]
+                ),
+            $user3 = new User(
+                [
+                'person' => new Person(['Скворцов', 'Майкл', 'Дитрихович', 23]),
+                'address' => new Address(['Волгоград', 'пр', 'Ленина', 81]),
+                'contracts' => [new Contract(['250/890', 'Село', 300])] 
+                ]
+                )
+
         ];
 
     }
@@ -51,11 +48,11 @@ class Application {
 
         $usersDataList = [];
 
-        foreach ($users as $array) {
+        foreach ($users as $value) {
 
-            $personInitials = $array['person']->getString_SurnameAndInitials();
-            $addressString = $array['address']->getString_CityStreetHome();
-            $contractString = $this->getContractsString($array['contracts']);
+            $personInitials = $value->userData['person']->getString_SurnameAndInitials();
+            $addressString = $value->userData['address']->getString_CityStreetHome();
+            $contractString = $this->getContractsString($value->userData['contracts']);
 
             $usersDataList[] = $personInitials.' '.$addressString.' '.$contractString;
 
