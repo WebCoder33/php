@@ -1,12 +1,9 @@
 <?php
 
 require_once 'user.php';
-require_once 'person.php';
-require_once 'address.php';
-require_once 'contract.php';
-require_once 'peopleGenerator.php';
-require_once 'addressGenerator.php';
-require_once 'contractGenerator.php';
+require_once 'person/peopleGenerator.php';
+require_once 'address/addressGenerator.php';
+require_once 'contract/contractGenerator.php';
 
 
 class Application {
