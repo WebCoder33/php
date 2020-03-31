@@ -1,16 +1,19 @@
 <?php
 
 require_once 'contract.php';
+require_once 'tariffGenerator.php';
 
 class contractGenerator {
 
     public function generateContract() {
 
-        $tariff = ['Космос','Удача','Фарт','Село','Звезда','Встреча'];
+        $tariffGenerator = new tariffGenerator();
+
+        $tariff = $tariffGenerator->generateTariff();
 
         return new Contract([
             sprintf("%'06d", rand(123,1300)), 
-            $tariff[array_rand($tariff, 1)], 
+            $tariff, 
             rand(250,1500)
             ]);
     }
