@@ -22,15 +22,19 @@ class Address {
         $counter = 0;
 
         foreach ( $this->address as $key => $value ) {
+
             if ($counter >= count($dataArray)) {
                 break;
             }
+
             if (!$this->checkEqualityTypes($this->address[$key], $dataArray[$counter])) {
                 $counter++;
                 continue;
             }
+
             $this->address[$key] = $dataArray[$counter];
             $counter++;
+            
         }
 
     }

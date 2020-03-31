@@ -20,15 +20,19 @@ class Person {
         $counter = 0;
 
         foreach ( $this->person as $key => $value ) {
+
             if ($counter >= count($dataArray)) {
                 break;
             }; 
+
             if (!$this->checkEqualityTypes($this->person[$key], $dataArray[$counter])) {
                 $counter++;
                 continue;
             }
+
             $this->person[$key] = $dataArray[$counter];
             $counter++;
+            
         }
 
     }

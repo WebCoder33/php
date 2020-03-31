@@ -12,66 +12,47 @@ class Application {
 
     public function __construct() {
     
-            $this->users = $this->requestUsers();
+            $this->users = $this->createUsers();
         
     }
 
-    private function requestUsers() {
+    private function createUsers() {
 
         $peopleGenerator = new peopleGenerator();
         $addressGenerator = new addressGenerator();
         $contractGenerator = new contractGenerator();
-        
 
-        return $users = [ 
-            $user1 = new User(
+        $users = [];
+
+        for ( $i = 0 ; $i < 4 ; $i++ ) {
+            $users[] = new User(
                 [
                 'person' => $peopleGenerator->generatePerson(),
                 'address' => $addressGenerator->generateAddress(),
                 'contracts' => [$contractGenerator->generateContract(), $contractGenerator->generateContract()]
                 ]
-                ),
-            $user2 = new User(
-                [
-                'person' => $peopleGenerator->generatePerson(),
-                'address' => $addressGenerator->generateAddress(),
-                'contracts' => [ $contractGenerator->generateContract(), $contractGenerator->generateContract() ] 
-                ]
-                ),
-            $user3 = new User(
-                [
-                'person' => $peopleGenerator->generatePerson(),
-                'address' => $addressGenerator->generateAddress(),
-                'contracts' => [$contractGenerator->generateContract()] 
-                ]
-                ),
-            $user4 = new User(
-                [
-                'person' => $peopleGenerator->generatePerson(),
-                'address' => $addressGenerator->generateAddress(),
-                'contracts' => [$contractGenerator->generateContract(),$contractGenerator->generateContract(),$contractGenerator->generateContract(),$contractGenerator->generateContract()] 
-                ]
-                )
+                );
+        }
 
-        ];
+        return $users; 
 
     }
 
     public function getUsersDataList() {
 
-        return $this->generateUsersDataList($this->users);
+        return $this->generateUsersDataList();
 
     }
 
-    protected function generateUsersDataList($users) {
+    protected function generateUsersDataList() {
 
         $usersDataList = [];
 
-        foreach ($users as $value) {
+        foreach ($this->users as $user) {
 
-            $personInitials = $value->userData['person']->getString_SurnameAndInitials();
-            $addressString = $value->userData['address']->getString_CityStreetHome();
-            $contractsString = $this->getContractsString($value->userData['contracts']);
+            $personInitials = $user->userData['person']->getString_SurnameAndInitials();
+            $addressString = $user->userData['address']->getString_CityStreetHome();
+            $contractsString = $this->getContractsString($user->userData['contracts']);
 
             $usersDataList[] = $personInitials.' '.$addressString.' '.$contractsString;
 
@@ -83,13 +64,13 @@ class Application {
 
     protected function getContractsString($contarcts) {
 
-        $contractString = '{';
+        $contractsString = '{';
 
-        foreach ($contarcts as $value) {
-            $contractString .= $value->getString_contractNumberTariff().', ';
+        foreach ($contarcts as $contract) {
+            $contractsString .= $contract->getString_contractNumberAndTariff().', ';
         }
 
-        return substr($contractString,0,-2).'}';
+        return substr($contractsString,0,-2).'}';
 
     }
 

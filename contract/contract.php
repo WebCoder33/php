@@ -19,15 +19,19 @@ class Contract {
         $counter = 0;
 
         foreach ( $this->contract as $key => $value ) {
+
             if ($counter >= count($dataArray)) {
                 break;
             }
+            
             if (!$this->checkEqualityTypes($this->contract[$key], $dataArray[$counter])) {
                 $counter++;
                 continue;
             }
+
             $this->contract[$key] = $dataArray[$counter];
             $counter++;
+
         }
 
     }
@@ -40,7 +44,7 @@ class Contract {
         
     }
 
-    public function getString_contractNumberTariff() {
+    public function getString_contractNumberAndTariff() {
 
         $contractNumber = $this->contract['number'];
         $tariff = $this->contract['tariff'];
