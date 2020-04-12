@@ -2,7 +2,7 @@
 
 class Contract {
 
-    private Array $contract = [
+    private $contract = [
         'number' => 'Null',
         'tariff' => 'Null',
         'payment' => 0

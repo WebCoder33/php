@@ -37,15 +37,14 @@ class Person {
 
     }
 
-    protected function checkEqualityTypes($firstValue, $secondValue) { 
-
+    protected function checkEqualityTypes($firstValue, $secondValue) {
         if (gettype($firstValue) == gettype($secondValue)) {
             return true;
-        };
-        
+        }
+        return false;
     }
     
-    public function getString_SurnameAndInitials() {
+    public function getStringSurnameAndInitials() {
 
 
         $lastName = $this->person['lastName'];
