@@ -6,73 +6,79 @@ require_once 'address/addressGenerator.php';
 require_once 'contract/contractGenerator.php';
 
 
-class Application {  
+class Application
+{
 
-    private $users;
+	private $users;
 
-    public function __construct() {
-    
-            $this->users = $this->createUsers();
-	        
-    }
+	public function __construct()
+	{
 
-    private function createUsers() {
+		$this->users = $this->createUsers();
 
-        $peopleGenerator = new peopleGenerator();
-        $addressGenerator = new addressGenerator();
-        $contractGenerator = new contractGenerator();
+	}
 
-        $users = [];
+	private function createUsers()
+	{
 
-        for ( $i = 0 ; $i < 4 ; $i++ ) {
-            $users[] = new User(
-                [
-                'person' => $peopleGenerator->generatePerson(),
-                'address' => $addressGenerator->generateAddress(),
-                'contracts' => [$contractGenerator->generateContract(), $contractGenerator->generateContract()]
-                ]
-                );
-        }
+		$peopleGenerator = new peopleGenerator();
+		$addressGenerator = new addressGenerator();
+		$contractGenerator = new contractGenerator();
 
-        return $users; 
+		$users = [];
 
-    }
+		for ($i = 0; $i < 4; $i++) {
+			$users[] = new User(
+				[
+					'person' => $peopleGenerator->generatePerson(),
+					'address' => $addressGenerator->generateAddress(),
+					'contracts' => [$contractGenerator->generateContract(), $contractGenerator->generateContract()]
+				]
+			);
+		}
 
-    public function getUsersDataList() {
+		return $users;
 
-        return $this->generateUsersDataList();
+	}
 
-    }
+	public function getUsersDataList()
+	{
 
-    private function generateUsersDataList() {
+		return $this->generateUsersDataList();
 
-        $usersDataList = [];
+	}
 
-        foreach ($this->users as $user) {
+	private function generateUsersDataList()
+	{
 
-            $personInitials = $user->userData['person']->getStringSurnameAndInitials();
-            $addressString = $user->userData['address']->getStringCityStreetHome();
-            $contractsString = $this->getContractsString($user->userData['contracts']);
+		$usersDataList = [];
 
-            $usersDataList[] = $personInitials.' '.$addressString.' '.$contractsString;
+		foreach ($this->users as $user) {
 
-        }
+			$personInitials = $user->userData['person']->getStringSurnameAndInitials();
+			$addressString = $user->userData['address']->getStringCityStreetHome();
+			$contractsString = $this->getContractsString($user->userData['contracts']);
 
-        return $usersDataList;
+			$usersDataList[] = $personInitials . ' ' . $addressString . ' ' . $contractsString;
 
-    }
+		}
 
-    private function getContractsString($contarcts) {
+		return $usersDataList;
 
-        $contractsString = '{';
+	}
 
-        foreach ($contarcts as $contract) {
-            $contractsString .= $contract->getStringContractNumberAndTariff().', ';
-        }
+	private function getContractsString($contracts)
+	{
 
-        return substr($contractsString,0,-2).'}';
+		$contractsString = '{';
 
-    }
+		foreach ($contracts as $contract) {
+			$contractsString .= $contract->getStringContractNumberAndTariff() . ', ';
+		}
+
+		return substr($contractsString, 0, -2) . '}';
+
+	}
 
 
 }
