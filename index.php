@@ -6,6 +6,5 @@ $application = new Application();
 
 foreach ($application->getUsersDataList() as $line) {
     echo $line."<br>";
-};
+}
 
-?>

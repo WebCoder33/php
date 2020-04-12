@@ -6,14 +6,14 @@ require_once 'address/addressGenerator.php';
 require_once 'contract/contractGenerator.php';
 
 
-class Application {
+class Application {  
 
     private $users;
 
     public function __construct() {
     
             $this->users = $this->createUsers();
-        
+	        
     }
 
     private function createUsers() {
@@ -44,14 +44,14 @@ class Application {
 
     }
 
-    protected function generateUsersDataList() {
+    private function generateUsersDataList() {
 
         $usersDataList = [];
 
         foreach ($this->users as $user) {
 
-            $personInitials = $user->userData['person']->getString_SurnameAndInitials();
-            $addressString = $user->userData['address']->getString_CityStreetHome();
+            $personInitials = $user->userData['person']->getStringSurnameAndInitials();
+            $addressString = $user->userData['address']->getStringCityStreetHome();
             $contractsString = $this->getContractsString($user->userData['contracts']);
 
             $usersDataList[] = $personInitials.' '.$addressString.' '.$contractsString;
@@ -62,12 +62,12 @@ class Application {
 
     }
 
-    protected function getContractsString($contarcts) {
+    private function getContractsString($contarcts) {
 
         $contractsString = '{';
 
         foreach ($contarcts as $contract) {
-            $contractsString .= $contract->getString_contractNumberAndTariff().', ';
+            $contractsString .= $contract->getStringContractNumberAndTariff().', ';
         }
 
         return substr($contractsString,0,-2).'}';
